@@ -187,6 +187,18 @@
           </button>
         </div>
       </div>
+      <div id="countdown">
+  <span id="days">00</span>d :
+  <span id="hours">00</span>h :
+  <span id="minutes">00</span>m :
+  <span id="seconds">00</span>s
+</div>
+
+<!-- Cake (hidden initially) -->
+<div id="cake">
+  🎂
+</div>
+
 
       <div class="right">
         <div class="box__account">
@@ -195,7 +207,7 @@
           </div>
           <div class="name">
             <i class="fa-solid fa-heart"></i>
-            <span>Name</span>
+            <span>bujjuluuuuuuuuuuuuuuuuuuu</span>
             <i class="fa-solid fa-heart"></i>
           </div>
           <div class="balloon_one">
@@ -316,6 +328,7 @@
     var intervalContent;
     var intervalTitle;
     $("#btn__letter").on("click", function(){
+      
       $(".box__letter").slideDown();
       setTimeout(function(){
         $(".letter__border").slideDown();
@@ -371,5 +384,56 @@
       $(".letter__border").slideUp();
     });
   </script>
+  <script>
+const targetDate = new Date("Dec 31, 2025 00:00:00").getTime();
+
+const timer = setInterval(() => {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  if (diff <= 0) {
+    clearInterval(timer);
+    document.getElementById("countdown").style.display = "none";
+    startCelebration();
+    return;
+  }
+
+  document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
+  document.getElementById("hours").innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  document.getElementById("minutes").innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
+  document.getElementById("seconds").innerText = Math.floor((diff % (1000*60)) / 1000);
+}, 1000);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+function startCelebration() {
+  // 🎉 Confetti blast
+  confetti({
+    particleCount: 300,
+    spread: 180,
+    origin: { y: 0.6 }
+  });
+
+  // 🎈 Balloon spray
+  for (let i = 0; i < 5; i++) {
+    confetti({
+      particleCount: 50,
+      spread: 60,
+      startVelocity: 40,
+      origin: { x: Math.random(), y: 1 }
+    });
+  }
+
+  // 🎂 Show cake
+  document.getElementById("cake").style.display = "block";
+}
+</script>
+<script>
+document.getElementById("cake").onclick = () => {
+  alert("🎂 Cake cut! Happy Birthday bujjuuuuuuu 💖");
+};
+</script>
+
 </body>
 </html>

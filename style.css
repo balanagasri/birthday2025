@@ -853,3 +853,51 @@ h1 {
     
 
 }
+#countdown {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-family: "Sriracha", cursive;
+  background: #ff7882;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 3px solid #333;
+  color: #fff;
+}
+
+#cake {
+  display: none;
+  font-size: 100px;
+  margin-top: 30px;
+  animation: cakePop 1s ease-in-out forwards;
+}
+
+@keyframes cakePop {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+#countdown,
+#cake-section {
+  display: none;   /* 👈 hide on page load */
+}
+#countdown {
+  margin-top: 15px;
+}
+
+.left {
+  align-items: flex-start; /* keeps vertical flow */
+}
+#countdown {
+  margin-top: 10px;
+  background: #ff7882;
+  padding: 8px 20px;
+  border-radius: 20px;
+  color: white;
+  font-family: "Sriracha", cursive;
+  display: none;
+}
+
+#cake {
+  margin-top: 15px;
+  display: none;
+}
