@@ -186,8 +186,7 @@
             <i class="fa-regular fa-envelope"></i>
           </button>
         </div>
-      </div>
-      <div id="countdown">
+        <div id="countdown">
   <span id="days">00</span>d :
   <span id="hours">00</span>h :
   <span id="minutes">00</span>m :
@@ -198,6 +197,8 @@
 <div id="cake">
   🎂
 </div>
+      </div>
+      
 
 
       <div class="right">
@@ -384,51 +385,60 @@
       $(".letter__border").slideUp();
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+function startCelebration() {
+
+  // 🎂 SHOW THE CAKE
+  const cake = document.getElementById("cake");
+  cake.style.display = "block";
+
+  // 🎉 OPTIONAL: simple confetti (safe)
+  if (typeof confetti === "function") {
+    confetti({
+      particleCount: 200,
+      spread: 160,
+      origin: { y: 0.6 }
+    });
+  }
+}
+</script>
+
   <script>
 const targetDate = new Date("Dec 31, 2025 00:00:00").getTime();
 
-const timer = setInterval(() => {
-  const now = new Date().getTime();
-  const diff = targetDate - now;
+/* ⏰ Start timer AFTER animations (16 seconds) */
+setTimeout(startTimer, 16000);
 
-  if (diff <= 0) {
-    clearInterval(timer);
-    document.getElementById("countdown").style.display = "none";
-    startCelebration();
-    return;
-  }
+function startTimer() {
 
-  document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
-  document.getElementById("hours").innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-  document.getElementById("minutes").innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
-  document.getElementById("seconds").innerText = Math.floor((diff % (1000*60)) / 1000);
-}, 1000);
-</script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  // show countdown when timer actually starts
+  document.getElementById("countdown").style.display = "block";
 
-<script>
-function startCelebration() {
-  // 🎉 Confetti blast
-  confetti({
-    particleCount: 300,
-    spread: 180,
-    origin: { y: 0.6 }
-  });
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
 
-  // 🎈 Balloon spray
-  for (let i = 0; i < 5; i++) {
-    confetti({
-      particleCount: 50,
-      spread: 60,
-      startVelocity: 40,
-      origin: { x: Math.random(), y: 1 }
-    });
-  }
+    if (diff <= 0) {
+      clearInterval(timer);
+      document.getElementById("countdown").style.display = "none";
+      startCelebration();
+      return;
+    }
 
-  // 🎂 Show cake
-  document.getElementById("cake").style.display = "block";
+    document.getElementById("days").innerText =
+      Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById("hours").innerText =
+      Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.getElementById("minutes").innerText =
+      Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById("seconds").innerText =
+      Math.floor((diff % (1000 * 60)) / 1000);
+
+  }, 1000);
 }
 </script>
+
 <script>
 document.getElementById("cake").onclick = () => {
   alert("🎂 Cake cut! Happy Birthday bujjuuuuuuu 💖");

@@ -901,3 +901,11 @@ h1 {
   margin-top: 15px;
   display: none;
 }
+#countdown {
+  display: none;
+}
+
+#cake {
+  display: none;
+}
+
